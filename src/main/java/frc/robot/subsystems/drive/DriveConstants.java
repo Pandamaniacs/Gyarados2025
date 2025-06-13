@@ -64,6 +64,11 @@ public class DriveConstants {
   public static final int backLeftTurnCanId = Constants.isGuido ? 16 : 10;
   public static final int backRightTurnCanId = Constants.isGuido ? 12 : 12;
 
+  public static final int frontLeftAbsoluteInputPort = 16;
+  public static final int frontRightAbsoluteInputPort = 14;
+  public static final int backLeftAbsoluteInputPort = 10;
+  public static final int backRightAbsoluteInputPort = 12;
+
   // Drive motor configuration
   public static final int driveMotorCurrentLimit = 60;
   public static final double wheelRadiusMeters = Units.inchesToMeters(1.4797244566677281);

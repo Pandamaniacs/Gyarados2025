@@ -2,7 +2,6 @@ package frc.robot.bobot_state.varc;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import frc.robot.auto.AutoConstants;
 import frc.robot.bobot_state.BobotState;
 import frc.robot.field.FieldUtils;
 
@@ -14,13 +13,7 @@ public class ReefTagTracker extends TargetAngleTracker {
     Pose2d closestPose = FieldUtils.getClosestReef().tag.pose().toPose2d();
     rotationTarget = closestPose.getRotation().plus(Rotation2d.kPi);
     distanceMeters =
-        closestPose
-            .getTranslation()
-            .getDistance(
-                (AutoConstants.useConstrainedPoseForReef
-                        ? BobotState.getConstrainedPose()
-                        : BobotState.getGlobalPose())
-                    .getTranslation());
+        closestPose.getTranslation().getDistance((BobotState.getGlobalPose()).getTranslation());
   }
 
   public Rotation2d getRotationTarget() {
