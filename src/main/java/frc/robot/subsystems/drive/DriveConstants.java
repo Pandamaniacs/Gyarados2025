@@ -17,13 +17,12 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.math.util.Units;
-import frc.robot.Constants;
 
 public class DriveConstants {
   // TODO: max speed, wheel radius, gyro trimming
   public static final double maxSpeedMetersPerSec = 4.4;
   public static final double odometryFrequency = 100.0; // Hz
-  public static final double trackWidth = Units.inchesToMeters(Constants.isGuido ? 20.5 : 22.5);
+  public static final double trackWidth = Units.inchesToMeters(22.5);
   public static final double wheelBase = trackWidth;
   public static final double driveBaseRadius = Math.hypot(trackWidth / 2.0, wheelBase / 2.0);
   public static final Translation2d[] moduleTranslations =
@@ -37,47 +36,40 @@ public class DriveConstants {
   // Zeroed rotation values for each module.
   // When calibrating, hold the metal bar to each wheel,
   // using the flat side (without gear) to the right of the robot
-  public static final Rotation2d frontLeftZeroRotation =
-      new Rotation2d(Constants.isGuido ? -1.5332492033587857 : 1.422 + Math.PI);
-  public static final Rotation2d frontRightZeroRotation =
-      new Rotation2d(Constants.isGuido ? -3.137842957173483 : 1.587 + Math.PI);
-  public static final Rotation2d backLeftZeroRotation =
-      new Rotation2d(Constants.isGuido ? -3.138901297246115 : 5.186 + Math.PI);
-  public static final Rotation2d backRightZeroRotation =
-      new Rotation2d(Constants.isGuido ? 1.5813666582107544 : 3.353 + Math.PI);
+  public static final Rotation2d frontLeftZeroRotation = Rotation2d.fromDegrees(0);
+  public static final Rotation2d frontRightZeroRotation = Rotation2d.fromDegrees(0);
+  public static final Rotation2d backLeftZeroRotation = Rotation2d.fromDegrees(142.70);
+  public static final Rotation2d backRightZeroRotation = Rotation2d.fromDegrees(136.55);
 
-  public static final double gyroTrimScalar = Constants.isGuido ? 1.501 : 0.0;
+  public static final double gyroTrimScalar = 0.0;
 
   // Device CAN IDs
   public static final int pigeonCanId = 1;
-  public static final double mountPoseYawDeg = Constants.isGuido ? -0.9988248944282532 : 0;
-  public static final double mountPosePitchDeg = Constants.isGuido ? -0.2277984470129013 : 0;
-  public static final double mountPoseRollDeg = Constants.isGuido ? 1.5160924196243286 : 0;
+  public static final double mountPoseYawDeg = 0;
+  public static final double mountPosePitchDeg = 0;
+  public static final double mountPoseRollDeg = 0;
 
-  public static final int frontLeftDriveCanId = Constants.isGuido ? 15 : 13;
-  public static final int frontRightDriveCanId = Constants.isGuido ? 11 : 11;
-  public static final int backLeftDriveCanId = Constants.isGuido ? 17 : 17;
-  public static final int backRightDriveCanId = Constants.isGuido ? 13 : 15;
+  public static final int frontLeftDriveCanId = 1;
+  public static final int frontRightDriveCanId = 2;
+  public static final int backLeftDriveCanId = 3;
+  public static final int backRightDriveCanId = 4;
 
-  public static final int frontLeftTurnCanId = Constants.isGuido ? 14 : 16;
-  public static final int frontRightTurnCanId = Constants.isGuido ? 10 : 14;
-  public static final int backLeftTurnCanId = Constants.isGuido ? 16 : 10;
-  public static final int backRightTurnCanId = Constants.isGuido ? 12 : 12;
+  public static final int frontLeftTurnCanId = 5;
+  public static final int frontRightTurnCanId = 6;
+  public static final int backLeftTurnCanId = 7;
+  public static final int backRightTurnCanId = 8;
 
-  public static final int frontLeftAbsoluteInputPort = 16;
-  public static final int frontRightAbsoluteInputPort = 14;
-  public static final int backLeftAbsoluteInputPort = 10;
-  public static final int backRightAbsoluteInputPort = 12;
+  public static final int frontLeftAbsoluteInputPort = 0;
+  public static final int frontRightAbsoluteInputPort = 1;
+  public static final int backLeftAbsoluteInputPort = 2;
+  public static final int backRightAbsoluteInputPort = 3;
 
   // Drive motor configuration
   public static final int driveMotorCurrentLimit = 60;
   public static final double wheelRadiusMeters = Units.inchesToMeters(1.4797244566677281);
-  public static final double driveMotorReduction =
-      (45.0 * 22.0)
-          / ((Constants.isGuido ? 12.0 : 13.0)
-              * 15.0); // MAXSwerve with 12 pinion teeth and 22 spur teeth
-  public static final DCMotor driveGearbox =
-      Constants.isGuido ? DCMotor.getNEO(1) : DCMotor.getNeoVortex(1);
+  // MAXSwerve with 12 pinion teeth and 22 spur teeth
+  public static final double driveMotorReduction = (45.0 * 22.0) / 13.0 * 15.0;
+  public static final DCMotor driveGearbox = DCMotor.getNEO(1);
 
   // Drive encoder configuration
   public static final double driveEncoderPositionFactor =
@@ -99,7 +91,7 @@ public class DriveConstants {
   public static final boolean turnInverted = false;
   public static final int turnMotorCurrentLimit = 20;
   public static final double turnMotorReduction = 9424.0 / 203.0;
-  public static final DCMotor turnGearbox = DCMotor.getNeo550(1);
+  public static final DCMotor turnGearbox = DCMotor.getNEO(1);
 
   // Turn encoder configuration
   public static final boolean turnEncoderInverted = true;
