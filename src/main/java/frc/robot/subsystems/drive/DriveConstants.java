@@ -36,10 +36,18 @@ public class DriveConstants {
   // Zeroed rotation values for each module.
   // When calibrating, hold the metal bar to each wheel,
   // using the flat side (without gear) to the right of the robot
-  public static final Rotation2d frontLeftZeroRotation = Rotation2d.fromDegrees(0);
-  public static final Rotation2d frontRightZeroRotation = Rotation2d.fromDegrees(0);
-  public static final Rotation2d backLeftZeroRotation = Rotation2d.fromDegrees(142.70);
-  public static final Rotation2d backRightZeroRotation = Rotation2d.fromDegrees(136.55);
+  public static final double frontLeftZeroOffset = -21.40;
+  public static final double frontRightZeroOffset = 11.27;
+  public static final double backLeftZeroOffset = 119.85;
+  public static final double backRightZeroOffset = 128.68;
+
+  public static final Rotation2d frontLeftZeroRotation =
+      Rotation2d.fromDegrees(frontLeftZeroOffset);
+  public static final Rotation2d frontRightZeroRotation =
+      Rotation2d.fromDegrees(frontRightZeroOffset);
+  public static final Rotation2d backLeftZeroRotation = Rotation2d.fromDegrees(backLeftZeroOffset);
+  public static final Rotation2d backRightZeroRotation =
+      Rotation2d.fromDegrees(backRightZeroOffset);
 
   public static final double gyroTrimScalar = 0.0;
 
@@ -90,13 +98,16 @@ public class DriveConstants {
   // Turn motor configuration
   public static final boolean turnInverted = false;
   public static final int turnMotorCurrentLimit = 20;
-  public static final double turnMotorReduction = 9424.0 / 203.0;
+  // Pulled from SDS Documentation
+  public static final double turnMotorReduction = 12.8;
   public static final DCMotor turnGearbox = DCMotor.getNEO(1);
 
   // Turn encoder configuration
   public static final boolean turnEncoderInverted = true;
-  public static final double turnEncoderPositionFactor = 2 * Math.PI; // Rotations -> Radians
-  public static final double turnEncoderVelocityFactor = (2 * Math.PI) / 60.0; // RPM -> Rad/Sec
+  public static final double turnEncoderPositionFactor =
+      2 * Math.PI / turnMotorReduction; // Rotations -> Radians
+  public static final double turnEncoderVelocityFactor =
+      2 * Math.PI / 60.0 / turnMotorReduction; // RPM -> Rad/Sec
 
   // Turn PID configuration
   public static final double turnKp = 2.0;
