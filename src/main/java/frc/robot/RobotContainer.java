@@ -141,7 +141,7 @@ public class RobotContainer {
                 drive,
                 () -> -driverController.getLeftYSquared(),
                 () -> -driverController.getLeftXSquared(),
-                () -> -driverController.getRightXSquared()));
+                () -> driverController.getRightXSquared()));
         break;
     }
   }
